@@ -1,6 +1,5 @@
 import 'package:agenda_de_contatos/models/contact.dart';
 import 'package:agenda_de_contatos/screens/details/details.dart';
-import 'package:agenda_de_contatos/screens/details/widgets/custom_divider.dart';
 import 'package:agenda_de_contatos/style.dart';
 import 'package:flutter/material.dart';
 import 'package:agenda_de_contatos/provider/contacts.dart';
@@ -17,8 +16,12 @@ class _HomeState extends State<Home> {
         appBar: AppBar(title: Text("Meus Contatos")),
         floatingActionButton:
             FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
-        body: ListView.builder(
-            itemBuilder: builder, itemCount: listOfContacts.length));
+        body: ListView.separated(
+            itemBuilder: builder,
+            separatorBuilder: (BuildContext context, int _) {
+              return Divider(color: grayDivider, thickness: 1);
+            },
+            itemCount: listOfContacts.length));
   }
 
   Widget builder(BuildContext context, int index) {
